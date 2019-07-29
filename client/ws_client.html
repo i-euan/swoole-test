@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var ws = new WebSocket("ws://211.159.150.207:8080");
+
+    ws.onopen = function (evt) {
+        console.log("Connection");
+        ws.send("Hello WebSocket");
+    }
+
+    ws.onmessage = function (evt) {
+        if (typeof evt.data === String) {
+            console.log("Received data string");
+        }
+
+        if (event.data instanceof ArrayBuffer) {
+            var buffer = evt.data;
+            console.log("Received arraybuffer");
+        }
+        console.log("Received Message: " + evt.data);
+    }
+
+    ws.onclose = function (evt) {
+        console.log("Connection closed.");
+    };
+</script>
